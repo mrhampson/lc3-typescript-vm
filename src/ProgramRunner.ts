@@ -209,7 +209,6 @@ export class ProgramRunner {
                             /* TRAP GETC */
                             /* read a single ASCII char */
                             this.registers[Registers.R_R0] = this.get_char();
-    
                             break;
                         case Traps.TRAP_OUT:
                             /* TRAP OUT */
@@ -219,10 +218,12 @@ export class ProgramRunner {
                             /* TRAP PUTS */{
                                 /* one char per word */
                                 let addr = this.registers[Registers.R_R0];
+                                let charBuffer = [];
                                 while (this.memory[addr] !== 0) {
-                                    console.log(String.fromCharCode(this.memory[addr]));
+                                    charBuffer.push(String.fromCharCode(this.memory[addr]));
                                     addr++;
                                 }
+                                console.log(charBuffer.join(''));
                             }
                             break;
                         case Traps.TRAP_IN:
@@ -236,16 +237,17 @@ export class ProgramRunner {
                                    here we need to swap back to
                                    big endian format */
                                 let addr = this.registers[Registers.R_R0];
-                                while (this.memory[addr] != 0)
-                                {
+                                let charBuffer = [];
+                                while (this.memory[addr] != 0) {
                                     let char1 = this.memory[addr] & 0xFF;
-                                    console.log(String.fromCharCode(char1));
+                                    charBuffer.push(String.fromCharCode(char1));
                                     let char2 = this.memory[addr] >> 8;
                                     if (char2) {
-                                        console.log(String.fromCharCode(char2));
+                                        charBuffer.push(String.fromCharCode(char2));
                                     }
                                     addr++;
                                 }
+                                console.log(charBuffer.join(''));
                             }
     
                             break;
