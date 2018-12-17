@@ -1,0 +1,22 @@
+{
+  "name": "lc3-typescript-vm",
+  "version": "0.1.0",
+  "description": "LC3 virtual machine implemented in typescript",
+  "main": "dist/main.js",
+  "scripts": {
+    "build-ts": "tsc",
+    "start": "npm run serve",
+    "serve": "node dist/main.js",
+    "watch-node": "nodemon dist/main.js",
+    "watch-ts": "tsc -w",
+    "debug": "node --nolazy --inspect-brk=9229 dist/main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^10.12.15",
+    "nodemon": "^1.18.9",
+    "tslint": "^5.11.0",
+    "typescript": "^3.2.2"
+  }
+}
