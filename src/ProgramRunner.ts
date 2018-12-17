@@ -208,6 +208,7 @@ export class ProgramRunner {
                         case Traps.TRAP_GETC:
                             /* TRAP GETC */
                             /* read a single ASCII char */
+                            let inputData = this.getInputAsync();
                             this.registers[Registers.R_R0] = this.get_char();
                             break;
                         case Traps.TRAP_OUT:
@@ -284,6 +285,8 @@ export class ProgramRunner {
     private sign_extend(x:number, bitCount:number):number {
         if ((x >> (bitCount - 1)) & 1) {
             x |= (0xFFFF << bitCount);
+            // Need to and it with this so we don't exceed 16-bits
+            x &= 0xFFFF;
         }
         return x;
     }

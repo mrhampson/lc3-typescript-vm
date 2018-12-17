@@ -9,6 +9,6 @@ for (var i = 0; i < imageData.length; i += 2) {
     imageDataUInt16[i/2] = uint16;
 }
 
-let runner = new ProgramRunner(['c']);
+let runner = new ProgramRunner([]);
 runner.readImage(imageDataUInt16);
 runner.run();
